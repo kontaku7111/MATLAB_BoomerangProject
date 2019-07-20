@@ -1,0 +1,11 @@
+CSV files separated by ";"
+
+UNITS :
+Accelero_HDR:	mg
+Accelero_MPU:	mg
+Gyro_MPU	:	°/s
+Magneto		:	µT
+Gyro_HDR	:	°/s
+
+OTHER : 
+Gyro_HDR seems to have an offset of about +170°/s , that should be removed during filtering.
