@@ -1,3 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (c) 2019 Darwin Boomerangs                         %
+% Smart -Boomerang Project                           %
+% In partnership with :                              %
+%   - University of St Etienne, France               %
+%   - Aoyama Gakuin University / Lopez lab, Japan    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Filename    mean_error.m                            %
+% This file is a funtion to evaluate predicted data  %
+% using true data.                                   %  
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% v1.0  Date July 23th, 2019     Author Takumi Kondo %
+% Modifications from previous version...             %
+% ...                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function [mae_,mape_]=mean_error(predict, truth)
 mae_=0;
 for i=1:length(truth)

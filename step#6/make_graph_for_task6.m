@@ -1,3 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (c) 2019 Darwin Boomerangs                         %
+% Smart -Boomerang Project                           %
+% In partnership with :                              %
+%   - University of St Etienne, France               %
+%   - Aoyama Gakuin University / Lopez lab, Japan    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Filename    make_graph_for_task6.m               %
+% This file is intended to put what I did in task 6  %
+% together. When use this script, click Run Section  %  
+% insted of clicking Run.                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% v1.0  Date July 23th, 2019     Author Takumi Kondo %
+% Modifications from previous version...             %
+% ...                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %% compare filtered signal and raw signal
 ax=xAcc_mpu;
 ay=yAcc_mpu;
@@ -53,7 +72,7 @@ title('extracted flight period and removed saturation');
 ylabel('Acceleration [m/s^2]');
 xlabel('Time [s]');
 
-%%
+%% make a estimation formula of gyro HDR and evaluate it
 ax=xAcc_mpu; ay=yAcc_mpu; az=zAcc_mpu;
 
 gf=median_filter_f(gyro_hdr,25);

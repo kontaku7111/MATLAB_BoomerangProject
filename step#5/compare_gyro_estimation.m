@@ -1,70 +1,22 @@
-n
-orm=sqrt(xAcc_mpu.^2+yAcc_mpu.^2+zAcc_mpu.^2);
-threshold=1.5*10^4;
-% [flight_start]=find(norm>=threshold&-zGyro_mpu>=2000,1);
-% [flight_end]=find((norm>=threshold)&(-zGyro_mpu>=2000),1,'last');
-[flight_end]=find((-zGyro_mpu>=2000),1,'last');
-[flight_start]=find((-zGyro_mpu>=2000),1);
-% gyro_Hdr=median_filter_p(gyro_hdr,250);
-gyro_Hdr=gyro_hdr;
-% flight_end=flight_start+250;
-% flight_start=flight_end;
-% flight_end=flight_end+250;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (c) 2019 Darwin Boomerangs                         %
+% Smart -Boomerang Project                           %
+% In partnership with :                              %
+%   - University of St Etienne, France               %
+%   - Aoyama Gakuin University / Lopez lab, Japan    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-time_=time(flight_start:flight_end);
-
-xAcc_mpu_=xAcc_mpu(flight_start:flight_end);
-yAcc_mpu_=yAcc_mpu(flight_start:flight_end);
-zAcc_mpu_=zAcc_mpu(flight_start:flight_end);
-
-xMag_=xMag(flight_start:flight_end);
-yMag_=yMag(flight_start:flight_end);
-zMag_=zMag(flight_start:flight_end);
-
-xGyro_mpu_=xGyro_mpu(flight_start:flight_end);
-yGyro_mpu_=yGyro_mpu(flight_start:flight_end);
-zGyro_mpu_=zGyro_mpu(flight_start:flight_end);
-
-gyro_hdr_=gyro_Hdr(flight_start:flight_end);
-norm_=sqrt(xAcc_mpu_.^2+yAcc_mpu_.^2+zAcc_mpu_.^2);
-% norm_=sqrt(xMag_.^2+yMag_.^2+zMag_.^2);
-
-yPower=sqrt(yAcc_mpu_.^2);
-plot(yPower)
-max(yPower)
-
-% [flight_start]=find(yPower==max(yPower),1,'last');
-%%
-flight_start=177;
-flight_end=3157;
-
-time_=time_(flight_start:flight_end);
-xAcc_mpu_=xAcc_mpu_(flight_start:flight_end);
-yAcc_mpu_=yAcc_mpu_(flight_start:flight_end);
-zAcc_mpu_=zAcc_mpu_(flight_start:flight_end);
-xMag_=xMag_(flight_start:flight_end);
-yMag_=yMag_(flight_start:flight_end);
-zMag_=zMag(flight_start:flight_end);
-xGyro_mpu_=xGyro_mpu_(flight_start:flight_end);
-yGyro_mpu_=yGyro_mpu_(flight_start:flight_end);
-zGyro_mpu_=zGyro_mpu_(flight_start:flight_end);
-gyro_hdr_=gyro_hdr_(flight_start:flight_end);
-norm_=sqrt(xAcc_mpu_.^2+yAcc_mpu_.^2+zAcc_mpu_.^2);
-plot(gyro_hdr_)
-
-%%
-% subplot(211);
-% [ppx_xAcc,Fx_acc]=pwelch(xAcc_mpu,[],[],[],Fs);
-% plot(Fx_acc(Fx_acc<50),ppx_xAcc(Fx_acc<50));
-% subplot(212);
-% [ppx_yAcc,Fy_acc]=pwelch(yAcc_mpu,[],[],[],Fs);
-% plot(Fy_acc(Fy_acc<50),ppx_yAcc(Fy_acc<50));
-% figure(2);
-% [ppx_gyro,F_gyro]=pwelch(gyro_hdr,[],[],[],Fs);
-% plot(F_gyro(F_gyro<50),ppx_gyro(F_gyro<50));
-
-
-%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Filename    compare_gyro_estimation.m              %
+% This file is intended to compare combinations of   %
+% 2 sensor values                                    %  
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% v1.0  Date July 23th, 2019     Author Takumi Kondo %
+% Modifications from previous version...             %
+% ...                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% compare combinations of 2 sensor values
 figure(1);
 x=zMag_;y=xAcc_mpu_;
 [c1, gof]=fit([x, y],gyro_hdr_,'poly23');
@@ -112,7 +64,6 @@ title("Estimation used by z axis magneto and z axis accelero"...
 legend("gyro HDR","estimation")
 set(gca,'FontSize',14);
 
-%%
 figure(2);
 x=xMag_;y=xAcc_mpu_;
 [c, gof]=fit([x, y],gyro_hdr_,'poly23');
@@ -159,7 +110,6 @@ title("Estimation used by x axis magneto and z axis accelero"...
 legend("gyro HDR","estimation")
 set(gca,'FontSize',14);
 
-%%
 figure(3);
 x=yMag_;y=xAcc_mpu_;
 [c, gof]=fit([x, y],gyro_hdr_,'poly23');
@@ -205,8 +155,7 @@ title("Estimation used by y axis magneto and z axis accelero"...
     +newline+"Adjrsquare: "+gof.adjrsquare);
 legend("gyro HDR","estimation")
 set(gca,'FontSize',14);
-
-%% 
+ 
 figure(4);
 % gyro_hdr_=gyro_hdr;
 % time_=time;
@@ -236,7 +185,6 @@ set(gca,'FontSize',14);
 % a.Rsquared.Adjusted
 % plot(c(x,y))
 
-%%
 figure(5);
 x=xMag_;y=yMag_;
 subplot(311);

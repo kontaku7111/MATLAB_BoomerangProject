@@ -1,8 +1,21 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (c) 2019 Darwin Boomerangs                         %
+% Smart -Boomerang Project                           %
+% In partnership with :                              %
+%   - University of St Etienne, France               %
+%   - Aoyama Gakuin University / Lopez lab, Japan    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% gyro_z=[0;dlmread(filename,';',1,0)];
-% gyro_z_petit=abs([dlmread(filename_petit,';',1,2)]);
-% acc_data=dlmread(filename_acc,';',1,0);
-% t=(0:length(gyro_hdr)-1)/Fs;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Filename    fit_gyroHDR_yAcc.m                      %
+% This file is intended to make a estimation formula %
+% of gyro HDR using polynomial approach               %  
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% v1.0  Date July 23th, 2019     Author Takumi Kondo %
+% Modifications from previous version...             %
+% ...                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ax=xAcc_mpu;
 ay=yAcc_mpu;

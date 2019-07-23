@@ -1,6 +1,24 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (c) 2019 Darwin Boomerangs                         %
+% Smart -Boomerang Project                           %
+% In partnership with :                              %
+%   - University of St Etienne, France               %
+%   - Aoyama Gakuin University / Lopez lab, Japan    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Filename    confirm_Flightdata_set.m               %
+% This file is intended to store dataset3            %
+%                                                    %  
+%                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% v1.0  Date July 23th, 2019     Author Takumi Kondo %
+% Modifications from previous version...             %
+% ...                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clear;
-% change path
-path_dataset="C:\Users\TakumiKONDO\Documents\boomerang\data_set_3\";
+path=fileparts(pwd);
+path_dataset=path+"\data_set_3\";
 
 % Sampling frequency is 500 Hz 
 Fs=1000;

@@ -1,8 +1,26 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (c) 2019 Darwin Boomerangs                         %
+% Smart -Boomerang Project                           %
+% In partnership with :                              %
+%   - University of St Etienne, France               %
+%   - Aoyama Gakuin University / Lopez lab, Japan    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Filename    make_graph_for_task7.m               %
+% This file is intended to put what I did in task 7  %
+% together. When use this script, click Run Section  %  
+% insted of clicking Run.                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% v1.0  Date July 23th, 2019     Author Takumi Kondo %
+% Modifications from previous version...             %
+% ...                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% zGyro (estimated while z gyro mpu achieved 2000)
 Accelerometer=acc_MPU;
 
 zGyro=zGyro_mpu;
-may=median_filter_p(yAcc_mpu,25);
+may=median_filter_f(yAcc_mpu,25);
 for i=1:length(may)
     if abs(zGyro_mpu(i))==2000
         zGyro(i)=-estimate_gyroHDR(may(i));
@@ -43,7 +61,7 @@ legend("x acc","y acc","z acc");
 
 %% save resampled file
 zGyro=zGyro_mpu;
-may=median_filter_p(yAcc_mpu,25);
+may=median_filter_f(yAcc_mpu,25);
 for i=1:length(may)
     if abs(zGyro_mpu(i))==2000
         zGyro(i)=-estimate_gyroHDR(may(i));
@@ -69,7 +87,7 @@ time_flight=time(index_flight);
 
 % estimate HDR gyro value
 zGyro=zGyro_mpu;
-may=median_filter_p(yAcc_mpu,25);
+may=median_filter_f(yAcc_mpu,25);
 for i=1:length(may)
     if abs(zGyro_mpu(i))==2000
         zGyro(i)=-estimate_gyroHDR(yAcc_mpu(i));
@@ -89,9 +107,9 @@ addpath('quaternion_library');      % include quaternion library
 AHRS = MadgwickAHRS('SamplePeriod', 1/1000, 'Beta', 0.1);
 % unit: G
 Accelerometer=acc_MPU/9.81; %convert ms/(s^2) into G
-Accelerometer(:,1)=median_filter_p(Accelerometer(:,1),25);
-Accelerometer(:,2)=median_filter_p(Accelerometer(:,2),25);
-Accelerometer(:,3)=median_filter_p(Accelerometer(:,3),25);
+Accelerometer(:,1)=median_filter_f(Accelerometer(:,1),25);
+Accelerometer(:,2)=median_filter_f(Accelerometer(:,2),25);
+Accelerometer(:,3)=median_filter_f(Accelerometer(:,3),25);
 
 % unit: degree/s
 Gyroscope=gyro_MPU;
@@ -132,9 +150,9 @@ reFs=60;
 csvwrite("euler_03.csv",[a,b,c]);
 
 %% estimate euler angle using reasampled sensor data
-acc=dlmread("C:\Users\TakumiKONDO\Documents\boomerang\Boomerang project\Assets\Resources\csv\Acc_03.csv",",");
-gyro=dlmread("C:\Users\TakumiKONDO\Documents\boomerang\Boomerang project\Assets\Resources\csv\gyro_03.csv",",");
-mag=dlmread("C:\Users\TakumiKONDO\Documents\boomerang\Boomerang project\Assets\Resources\csv\Mag_03.csv",",");
+acc=dlmread(pwd+"\Acc_03.csv",",");
+gyro=dlmread(pwd+"\gyro_03.csv",",");
+mag=dlmread(pwd+"\Mag_03.csv",",");
 
 addpath('quaternion_library');      % include quaternion library
 acc=acc/9.81;
@@ -145,7 +163,7 @@ for t = 1:length(mag)
     q(t, :) = AHRS.Quaternion;
 end
 e = quatern2euler(quaternConj(q)) * (180/pi);
-unity=dlmread("C:\Users\TakumiKONDO\Documents\boomerang\euler.csv",",");
+unity=dlmread(pwd+"\EulerCalculatedOnUnity.csv",","); % this file was calculated on Unity
 subplot(211);
 plot(e);
 subplot(212);
@@ -153,9 +171,9 @@ plot(unity);
 ylim([-200 200]);
 
 %% compare filtered and non-filtered
-axf=median_filter_p(xAcc_mpu,25);
-ayf=median_filter_p(yAcc_mpu,25);
-azf=median_filter_p(zAcc_mpu,25);
+axf=median_filter_f(xAcc_mpu,25);
+ayf=median_filter_f(yAcc_mpu,25);
+azf=median_filter_f(zAcc_mpu,25);
 subplot(211);
 plot(time,axf);
 hold on;
